@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: ytd-bot
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: python bot.py
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.0
+      - key: BOT_TOKEN
+        fromService:
+          name: ytd-bot
+          type: web
+          property: env.BOT_TOKEN
